@@ -32,7 +32,7 @@ public class StudentController {
 			.body(this.studentService.create(course));
 	}
 
-	@GetMapping()
+	@GetMapping("/{studentId}")
 	public ResponseEntity<StudentResponseDTO> search(@PathVariable UUID studentId) {
 		return ResponseEntity
 			.status(HttpStatus.OK)

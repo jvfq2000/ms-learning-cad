@@ -50,18 +50,18 @@ public class StudentService implements IStudentService {
 		
 		this.eventService.send(
 			new CreatedStudentEventDTO(
-				studentCreated.getCourseId(),
+				studentCreated.getStudentId(),
 				studentCreated.getFirstName()+" "+studentCreated.getLastName(),
 				studentCreated.getCourseId()
 			)
 		);
 		
-		return new CreateStudentResponseDTO(studentCreated.getCourseId());
+		return new CreateStudentResponseDTO(studentCreated.getStudentId());
 	}
 
 	@Override
 	public StudentResponseDTO findById(UUID studentId) {
-		Student student =  this.studentRepository.findById(studentId).orElse(null);
+		Student student =  this.studentRepository.findByStudentId(studentId);
 		
 		if (student == null) {
 			throw new EmptyResultDataAccessException(1);

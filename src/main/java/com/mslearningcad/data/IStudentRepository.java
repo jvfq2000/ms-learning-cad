@@ -11,6 +11,9 @@ import com.mslearningcad.domain.Student;
 
 @Repository
 public interface IStudentRepository extends MongoRepository<Student, UUID> {
+	@Query(value = "{'studentId': ?0}")
+	public Student findByStudentId(UUID studentId);
+
 	@Query(value = "{'courseName': ?0}")
 	public List<Student> findByCourseName(String courseName);
 
